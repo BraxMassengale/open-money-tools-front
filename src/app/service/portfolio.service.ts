@@ -10,7 +10,7 @@ import {Portfolio} from "../interface/portfolio";
 })
 export class PortfolioService {
 
-  private readonly apiUrl = 'http://localhost:8080';
+  private readonly apiUrl = 'https://open-money-tools.herokuapp.com';
 
   constructor(private http: HttpClient) {
 

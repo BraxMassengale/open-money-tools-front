@@ -9,7 +9,7 @@ import {Holding} from "../interface/holding";
 })
 export class HoldingService {
 
-  private readonly apiUrl = 'http://localhost:8080';
+  private readonly apiUrl = 'https://open-money-tools.herokuapp.com';
 
   holdings$ = <Observable<CustomResponse>>
     this.http.get<CustomResponse>(`${this.apiUrl}/holding/list`)

@@ -9,7 +9,7 @@ import {Transaction} from "../interface/transaction";
 })
 export class TransactionService {
 
-  private readonly apiUrl = 'http://localhost:8080';
+  private readonly apiUrl = 'https://open-money-tools.herokuapp.com';
 
   transactions$ = <Observable<CustomResponse>>
     this.http.get<CustomResponse>(`${this.apiUrl}/transactions/list`)
