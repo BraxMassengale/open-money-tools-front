@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 
 
-const whitelist = ['https://open-money-tools-front.herokuapp.com, https://open-money-tools.herokuapp.com', "http://openmoney.tools"]; // list of allow domain
+const whitelist = ['https://open-money-tools-front.herokuapp.com', 'https://open-money-tools.herokuapp.com', "http://openmoney.tools"]; // list of allow domain
 
 const corsOptions = {
   origin: function (origin, callback) {
