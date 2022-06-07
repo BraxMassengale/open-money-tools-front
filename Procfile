@@ -1,1 +1,1 @@
-web: npm install && ng build && ng serve
+web: npm install && npm install -g @angular/cli && ng build && ng serve
