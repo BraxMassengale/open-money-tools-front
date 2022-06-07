@@ -14,6 +14,7 @@ const corsOptions = {
     }
 
     if (whitelist.indexOf(origin) === -1) {
+      console.log(origin);
       let msg = 'The CORS policy for this site does not ' +
         'allow access from the specified Origin.';
       return callback(new Error(msg), false);
