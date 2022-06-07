@@ -1,0 +1,59 @@
+<ng-container *ngIf="portfolioDataLoaded == false">
+  <ngx-skeleton-loader [theme]="{'width':  '30%'}" appearance="line" count="2"
+                       style="display: flex; flex-direction: column"></ngx-skeleton-loader>
+</ng-container>
+<ng-container *ngIf="portfolioDataLoaded == true ">
+  <ng-container *ngIf="(auth.isAuthenticated$ | async) && (auth.user$ | async) as user">
+    <h2>{{user.name}}</h2>
+    <p>Your total portfolio value is <strong>{{portfolioTotalValue}} {{portfolio.defaultCurrency.toUpperCase()}}</strong>
+    </p>
+  </ng-container>
+</ng-container>
+  <h2>Holdings</h2>
+  <div class="cards">
+    <div class="holdings">
+      <ng-container *ngIf="holdingDataLoaded == false">
+        <ngx-skeleton-loader [theme]="{'width':  '50%'}" appearance="line" count="3"
+                             style="display: flex; flex-direction: column"></ngx-skeleton-loader>
+      </ng-container>
+      <div *ngIf="holdingDataLoaded == true">
+        <table [dataSource]="holdings" class="mat-elevation-z8 demo-table" mat-table>
+
+          <ng-container matColumnDef="holding-name">
+            <th *matHeaderCellDef mat-header-cell>Asset</th>
+            <td *matCellDef="let holding" mat-cell> {{holding.holdingName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="holding-amount">
+            <th *matHeaderCellDef mat-header-cell>Amount</th>
+            <td *matCellDef="let holding" mat-cell> {{holding.holdingAmount}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="holding-value">
+            <th *matHeaderCellDef mat-header-cell>Value</th>
+            <td *matCellDef="let holding"
+                mat-cell> {{holding.holdingValue }} {{portfolio.defaultCurrency.toUpperCase()}}</td>
+          </ng-container>
+
+          <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+          <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <ng-container *ngIf="holdingDataLoaded == false">
+        <ngx-skeleton-loader [theme]="{'width':  '30%'}" appearance=""
+                             style="display: flex; flex-direction: column"></ngx-skeleton-loader>
+      </ng-container>
+      <div *ngIf="holdingDataLoaded == true">
+        <mat-card class="mat-elevation-z8">
+          <chart [options]="options" class="chart"></chart>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+
+
+

@@ -1,0 +1,15 @@
+<ng-container *ngIf="(appState$ | async) as appState" [ngSwitch]="appState.dataState">
+  <ng-container *ngSwitchCase="DataState.LOADING_STATE">
+    <div class="overlay">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="DataState.LOADED_STATE">
+    <portfolio></portfolio>
+    <mat-divider style="margin: 20px 0"></mat-divider>
+    <h2>Transactions</h2>
+    <transaction-table></transaction-table>
+  </ng-container>
+  <ng-container *ngSwitchCase="DataState.ERROR_STATE">
+  </ng-container>
+</ng-container>

@@ -1,0 +1,21 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.currencySelector, .profileImageInput {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 50%;
+}
+
+@media (max-width: 800px) {
+  .currencySelector, .profileImageInput {
+    width: 100%;
+  }
+
+  .logout {
+    width: 100%;
+  }
+}

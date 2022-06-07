@@ -1,0 +1,47 @@
+<ng-container *ngIf="dataLoaded == false">
+  <ngx-skeleton-loader [theme]="{'width':  '80%'}" appearance="line" count="5"></ngx-skeleton-loader>
+</ng-container>
+<ng-container *ngIf="dataLoaded == true">
+  <table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" mat-table>
+
+    <ng-container matColumnDef="transaction-id">
+      <th *matHeaderCellDef mat-header-cell>ID</th>
+      <td *matCellDef="let transaction" mat-cell> {{transaction.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="transaction-asset-received">
+      <th *matHeaderCellDef mat-header-cell>Asset Received</th>
+      <td *matCellDef="let transaction" mat-cell><span
+        *ngIf="transaction.amountReceived > 0"> {{transaction.amountReceived}}</span>
+        <strong *ngIf="transaction.assetReceived != ' '"> {{transaction.assetReceived}}</strong>
+        <strong *ngIf="transaction.assetReceived == ' '"> N/A</strong></td>
+    </ng-container>
+
+    <ng-container matColumnDef="transaction-asset-taken">
+      <th *matHeaderCellDef mat-header-cell>Asset Taken</th>
+      <td *matCellDef="let transaction" mat-cell><span
+        *ngIf="transaction.amountTaken > 0"> {{transaction.amountTaken}}</span>
+        <strong *ngIf="transaction.assetTaken != ' '"> {{transaction.assetTaken}}</strong>
+        <strong *ngIf="transaction.assetTaken == ' '"> N/A</strong></td>
+    </ng-container>
+
+    <ng-container matColumnDef="transaction-timestamp">
+      <th *matHeaderCellDef mat-header-cell>Timestamp</th>
+      <td *matCellDef="let transaction" mat-cell> {{transaction.transactionTime}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let transaction" mat-cell>
+        <button mat-icon-button color="warn" aria-label="Delete button" (click)="deleteTransaction(transaction)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+</ng-container>
+
+

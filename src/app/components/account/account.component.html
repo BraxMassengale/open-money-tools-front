@@ -1,0 +1,23 @@
+<h1>Account settings</h1>
+<p>Here you can change your preferred currency and update your account photo</p>
+
+<p *ngIf="portfolio != undefined">Your default currency is {{ portfolio.defaultCurrency.toUpperCase() }}</p>
+
+<div class="currencySelector">
+  <mat-form-field appearance="fill">
+    <mat-label>Select Default Currency</mat-label>
+    <mat-select [(ngModel)]="selectedOption" name="first">
+      <mat-option value="eur">EUR</mat-option>
+      <mat-option value="usd">USD</mat-option>
+      <mat-option value="gbp">GBP</mat-option>
+      <mat-option value="nzd">NZD</mat-option>
+      <mat-option value="chf">CHF</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button (click)="changeDefaultCurrency()" mat-button mat-raised-button>Change currency</button>
+</div>
+
+
+
+<button mat-button mat-raised-button color="warn" (click)="logout()" class="logout">Log out</button>

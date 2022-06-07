@@ -1,0 +1,48 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  min-width: 400px;
+  width: 100%;
+}
+
+.chart {
+  display: inline-block;
+  width: 385px;
+  height: 262.5px;
+}
+
+.mat-table {
+  border-radius: 5px;
+  overflow: hidden !important;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .cards {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .holdings {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .cards {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+}

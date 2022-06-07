@@ -1,0 +1,47 @@
+<form (ngSubmit)="saveTransaction()" [formGroup]="transactionForm">
+  <div>
+
+    <h3>Incoming Asset</h3>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Asset Received</mat-label>
+      <input [formControl]="assetReceived" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Amount Received</mat-label>
+      <input [formControl]="amountReceived" matInput>
+    </mat-form-field>
+  </div>
+
+  <div>
+
+    <h3>Outgoing Asset</h3>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Asset Taken</mat-label>
+      <input [formControl]="assetTaken" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Amount Taken</mat-label>
+      <input [formControl]="amountTaken" matInput>
+    </mat-form-field>
+  </div>
+
+
+  <div>
+
+    <h3>Date</h3>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Transaction Date</mat-label>
+      <input [formControl]="transactionTime" matInput type="date">
+    </mat-form-field>
+  </div>
+
+  <button [disabled]="transactionForm.invalid" color="primary" mat-raised-button type="submit">
+    Add transaction
+  </button>
+
+</form>

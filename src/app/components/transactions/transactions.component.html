@@ -1,0 +1,23 @@
+<ng-container *ngIf="(appState$ | async) as appState" [ngSwitch]="appState.dataState">
+  <ng-container *ngSwitchCase="DataState.LOADING_STATE">
+    <div class="overlay">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="DataState.LOADED_STATE">
+    <h1>Your Transactions</h1>
+    <button (click)="toggleNewTransactionForm()" color="primary" mat-raised-button>
+      <span *ngIf="!toggleNewTransaction">New transaction</span>
+      <span *ngIf="toggleNewTransaction">Close transaction form</span>
+    </button>
+    <ng-container *ngIf="toggleNewTransaction">
+      <p>To add a new transaction, enter the coinId of the coin you'd like to add to the transaction. If you wish to leave an asset field blank, type a space character.</p>
+      <transaction-form></transaction-form>
+    </ng-container>
+    <mat-divider style="margin: 20px 0"></mat-divider>
+    <h2>Transactions</h2>
+    <transaction-table></transaction-table>
+  </ng-container>
+  <ng-container *ngSwitchCase="DataState.ERROR_STATE">
+  </ng-container>
+</ng-container>
