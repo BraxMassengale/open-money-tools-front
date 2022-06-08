@@ -44,6 +44,17 @@ export class PortfolioComponent implements OnInit {
           console.log("Inside profile not undefined")
           if (profile.email != null) {
             console.log("Inside profile email not null")
+            if(profile.name && profile.email) {
+              console.log("Ok, saving portfolio!!!")
+              this.portfolioService.save$(
+                {
+                  id: 0,
+                  name: profile.name,
+                  email: profile.email,
+                  defaultCurrency: "eur"
+                }
+              )
+            }
             this.portfolioService.portfolio$(profile.email).subscribe(response => {
               console.log("Inside portfolio subscribe")
               if (response.data.portfolio) {
@@ -51,21 +62,6 @@ export class PortfolioComponent implements OnInit {
                 this.portfolio = response.data.portfolio;
               }
               this.portfolioDataLoaded = true;
-            }, err => {
-              if(err.status==500) {
-                console.log("There's no registry of that portfolio")
-                if(profile.name && profile.email) {
-                  console.log("Ok, saving portfolio!!!")
-                  this.portfolioService.save$(
-                    {
-                      id: 0,
-                      name: profile.name,
-                      email: profile.email,
-                      defaultCurrency: "eur"
-                    }
-                  )
-                }
-              }
             })
           }
         }
