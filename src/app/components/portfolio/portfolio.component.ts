@@ -49,7 +49,11 @@ export class PortfolioComponent implements OnInit {
               if (response.data.portfolio) {
                 console.log("there is portfolio data")
                 this.portfolio = response.data.portfolio;
-              } else {
+              }
+              this.portfolioDataLoaded = true;
+            }, err => {
+              if(err.status==500) {
+                console.log("There's no registry of that portfolio")
                 if(profile.name && profile.email) {
                   console.log("Ok, saving portfolio!!!")
                   this.portfolioService.save$(
@@ -62,7 +66,6 @@ export class PortfolioComponent implements OnInit {
                   )
                 }
               }
-              this.portfolioDataLoaded = true;
             })
           }
         }
