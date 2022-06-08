@@ -45,6 +45,17 @@ export class PortfolioComponent implements OnInit {
             this.portfolioService.portfolio$(profile.email).subscribe(response => {
               if (response.data.portfolio) {
                 this.portfolio = response.data.portfolio;
+              } else {
+                if(profile.name && profile.email) {
+                  this.portfolioService.save$(
+                    {
+                      id: 0,
+                      name: profile.name,
+                      email: profile.email,
+                      defaultCurrency: "eur"
+                    }
+                  )
+                }
               }
               this.portfolioDataLoaded = true;
             })
