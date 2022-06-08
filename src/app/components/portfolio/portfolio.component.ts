@@ -41,8 +41,11 @@ export class PortfolioComponent implements OnInit {
     this.auth.user$.subscribe(
       (profile) => {
         if(profile != undefined) {
+          console.log("Inside profile not undefined")
           if (profile.email != null) {
+            console.log("Inside profile email not null")
             this.portfolioService.portfolio$(profile.email).subscribe(response => {
+              console.log("Inside portfolio subscribe")
               if (response.data.portfolio) {
                 console.log("there is portfolio data")
                 this.portfolio = response.data.portfolio;
