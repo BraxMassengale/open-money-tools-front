@@ -60,7 +60,7 @@ export class PortfolioComponent implements OnInit {
                 defaultCurrency: "eur"
               };
 
-              this.portfolioService.save$(p).subscribe(res => res);
+              this.portfolioService.save$(p).subscribe(res => console.log(res));
             }
           }
         }
