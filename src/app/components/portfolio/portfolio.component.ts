@@ -53,14 +53,14 @@ export class PortfolioComponent implements OnInit {
 
             if(this.portfolio == undefined && profile.name && profile.email) {
               console.log("Ok, saving portfolio!!!")
-              this.portfolioService.save$(
-                {
-                  id: 0,
-                  name: profile.name,
-                  email: profile.email,
-                  defaultCurrency: "eur"
-                }
-              )
+              const p: Portfolio = {
+                id: 0,
+                name: profile.name,
+                email: profile.email,
+                defaultCurrency: "eur"
+              };
+
+              this.portfolioService.save$(p);
             }
           }
         }
