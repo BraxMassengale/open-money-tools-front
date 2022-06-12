@@ -43,21 +43,22 @@ export class PortfolioComponent implements OnInit {
         if(profile != undefined) {
           console.log("Inside profile not undefined")
           if (profile.email != null) {
-            if(this.portfolio == undefined && profile.name && profile.email) {
-              console.log("Ok, saving portfolio!!!")
-              const p: Portfolio = {
-                id: 0,
-                name: profile.name,
-                email: profile.email,
-                defaultCurrency: "eur"
-              };
-
-              this.portfolioService.save$(p).subscribe(res => console.log(res));
-            }
             this.portfolioService.portfolio$(profile.email).subscribe(response => {
               if (response.data.portfolio) {
                 console.log("there is portfolio data")
                 this.portfolio = response.data.portfolio;
+              } else {
+                if(this.portfolio == undefined && profile.name && profile.email) {
+                  console.log("Ok, saving portfolio!!!")
+                  const p: Portfolio = {
+                    id: 0,
+                    name: profile.name,
+                    email: profile.email,
+                    defaultCurrency: "eur"
+                  };
+
+                  this.portfolioService.save$(p).subscribe(res => console.log(res));
+                }
               }
               this.portfolioDataLoaded = true;
             })
